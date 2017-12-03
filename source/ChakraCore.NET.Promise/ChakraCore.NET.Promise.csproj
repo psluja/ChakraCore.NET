@@ -13,6 +13,7 @@
 this package contains dotnet Task &lt;-&gt; JS Promise convertion part</Description>
     <Version>1.0.1</Version>
     <PackageReleaseNotes>bug fixes</PackageReleaseNotes>
+    <Configurations>Debug;Release;Debug_Windows;Release_Linux;Release_Windows</Configurations>
   </PropertyGroup>
 
   <ItemGroup>

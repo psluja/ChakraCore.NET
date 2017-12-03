@@ -13,6 +13,7 @@ this package contains all features in one package.</Description>
     <PackageProjectUrl>https://github.com/JohnMasen/ChakraCore.NET</PackageProjectUrl>
     <Version>1.0.4</Version>
     <PackageReleaseNotes>Add "require" implementation (quick and dirty)</PackageReleaseNotes>
+    <Configurations>Debug;Release;Debug_Windows;Release_Linux;Release_Windows</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
@@ -43,6 +44,12 @@ this package contains all features in one package.</Description>
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="libChakraCore.so">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

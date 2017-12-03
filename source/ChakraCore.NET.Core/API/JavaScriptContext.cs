@@ -275,7 +275,13 @@
         public static JavaScriptValue RunScript(string script, JavaScriptSourceContext sourceContext, string sourceName)
         {
             JavaScriptValue result;
-            Native.ThrowIfError(Native.JsRunScript(script, sourceContext, sourceName, out result));
+            // windows only API
+            //Native.ThrowIfError(Native.JsRunScript(script, sourceContext, sourceName, out result));
+
+            JavaScriptValue jsScript = JavaScriptValue.FromString(script);
+            JavaScriptValue jsSourceUrl = JavaScriptValue.FromString(sourceName);
+
+            Native.ThrowIfError(Native.JsRun(jsScript, sourceContext, jsSourceUrl, JavaScriptRuntimeAttributes.None, out result));
             return result;
         }
 
@@ -294,8 +300,14 @@
         /// <returns>The result of the script, if any.</returns>
         public static JavaScriptValue RunScript(string script, byte[] buffer, JavaScriptSourceContext sourceContext, string sourceName)
         {
-            JavaScriptValue result;
-            Native.ThrowIfError(Native.JsRunSerializedScript(script, buffer, sourceContext, sourceName, out result));
+            JavaScriptValue result = JavaScriptValue.Null;
+            // Windows API only
+            //Native.ThrowIfError(Native.JsRunSerializedScript(script, buffer, sourceContext, sourceName, out result));
+
+
+            //Native.ThrowIfError(Native.JsParseSerialized(script, buffer, sourceContext, sourceName, out result));
+
+
             return result;
         }
 

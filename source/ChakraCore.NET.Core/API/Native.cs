@@ -224,10 +224,11 @@
 
         }
 
-
-
+#if (DEBUG_WINDOWS || RELEASE_WINDOWS)
         const string DllName = "ChakraCore.dll";
-
+#elif (DEBUG_LINUX || RELEASE_LINUX)
+        const string DllName = "libChakraCore.so";
+#endif
 
 
         [DllImport(DllName)]
@@ -337,10 +338,8 @@
         public static extern JavaScriptErrorCode JsParseScript(string script, JavaScriptSourceContext sourceContext, string sourceUrl, out JavaScriptValue result);
 
 
-
         [DllImport(DllName, CharSet = CharSet.Unicode)]
-
-        public static extern JavaScriptErrorCode JsRunScript(string script, JavaScriptSourceContext sourceContext, string sourceUrl, out JavaScriptValue result);
+        public static extern JavaScriptErrorCode JsRun(JavaScriptValue script, JavaScriptSourceContext sourceContext, JavaScriptValue sourceUrl, JavaScriptRuntimeAttributes parseAttributes, out JavaScriptValue result);
 
 
 
@@ -349,17 +348,9 @@
         public static extern JavaScriptErrorCode JsSerializeScript(string script, byte[] buffer, ref ulong bufferSize);
 
 
-
         [DllImport(DllName, CharSet = CharSet.Unicode)]
 
         public static extern JavaScriptErrorCode JsParseSerializedScript(string script, byte[] buffer, JavaScriptSourceContext sourceContext, string sourceUrl, out JavaScriptValue result);
-
-
-
-        [DllImport(DllName, CharSet = CharSet.Unicode)]
-
-        public static extern JavaScriptErrorCode JsRunSerializedScript(string script, byte[] buffer, JavaScriptSourceContext sourceContext, string sourceUrl, out JavaScriptValue result);
-
 
 
         [DllImport(DllName, CharSet = CharSet.Unicode)]
@@ -859,15 +850,14 @@
 
         public static extern JavaScriptErrorCode JsParseSerializedScriptWithCallback(JavaScriptSerializedScriptLoadSourceCallback scriptLoadCallback,
 
-            JavaScriptSerializedScriptUnloadCallback scriptUnloadCallback, byte[] buffer, JavaScriptSourceContext sourceContext, string sourceUrl, out JavaScriptValue result);
-
+        JavaScriptSerializedScriptUnloadCallback scriptUnloadCallback, byte[] buffer, JavaScriptSourceContext sourceContext, string sourceUrl, out JavaScriptValue result);
 
 
         [DllImport(DllName)]
 
         public static extern JavaScriptErrorCode JsRunSerializedScriptWithCallback(JavaScriptSerializedScriptLoadSourceCallback scriptLoadCallback,
 
-            JavaScriptSerializedScriptUnloadCallback scriptUnloadCallback, byte[] buffer, JavaScriptSourceContext sourceContext, string sourceUrl, out JavaScriptValue result);
+        JavaScriptSerializedScriptUnloadCallback scriptUnloadCallback, byte[] buffer, JavaScriptSourceContext sourceContext, string sourceUrl, out JavaScriptValue result);
 
     }
 }
