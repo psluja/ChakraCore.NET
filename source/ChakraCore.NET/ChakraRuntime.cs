@@ -47,7 +47,7 @@ namespace ChakraCore.NET
             }
             catch (System.Exception ex)
             {
-                throw ex;
+                throw;
             }
         }
         
